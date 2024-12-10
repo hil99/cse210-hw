@@ -3,53 +3,45 @@ using System.Collections.Generic;
 
 public class Order
 {
-    // Attributes
-    private int orderId;
-    private List<Item> items;
-    private double totalAmount;
+    private List<Product> products;
+    private Customer customer;
 
-    // Constructor
-    public Order(int orderId)
+    public Order(Customer customer)
     {
-        this.orderId = orderId;
-        this.items = new List<Item>();
-        this.totalAmount = 0.0;
+        this.products = new List<Product>();
+        this.customer = customer;
     }
 
-    // Methods
-    public void AddItem(Item item)
+    public void AddProduct(Product product)
     {
-        items.Add(item);
-        totalAmount += item.GetPrice();
-        Console.WriteLine($"{item.GetName()} added to the order.");
+        products.Add(product);
     }
 
-    public void RemoveItem(Item item)
+    public double CalculateTotalPrice()
     {
-        if (items.Remove(item))
+        double total = 0;
+        foreach (var product in products)
         {
-            totalAmount -= item.GetPrice();
-            Console.WriteLine($"{item.GetName()} removed from the order.");
+            total += product.GetTotalCost();
         }
-        else
-        {
-            Console.WriteLine("Item not found in the order.");
-        }
+
+        // Add shipping cost
+        total += customer.LivesInUSA() ? 5.00 : 35.00;
+        return total;
     }
 
-    public double GetTotalAmount()
+    public string GetPackingLabel()
     {
-        return totalAmount;
+        string label = "Packing Label:\n";
+        foreach (var product in products)
+        {
+            label += $"- {product.GetName()} (ID: {product.GetProductId()})\n";
+        }
+        return label;
     }
 
-    public void DisplayOrderDetails()
+    public string GetShippingLabel()
     {
-        Console.WriteLine($"Order ID: {orderId}");
-        Console.WriteLine("Items in order:");
-        foreach (var item in items)
-        {
-            Console.WriteLine($"- {item.GetName()} (${item.GetPrice()})");
-        }
-        Console.WriteLine($"Total Amount: ${totalAmount:F2}");
+        return $"Shipping Label:\n{customer.GetName()}\n{customer.GetAddress().ToString()}";
     }
 }

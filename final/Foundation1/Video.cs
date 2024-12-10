@@ -3,30 +3,17 @@ using System.Collections.Generic;
 
 public class Video
 {
-    // Attributes
     private string title;
     private string author;
-    private int length; // Length in minutes
+    private int length; // Length in seconds
     private List<Comment> comments;
 
-    // Constructor
     public Video(string title, string author, int length)
     {
         this.title = title;
         this.author = author;
         this.length = length;
         this.comments = new List<Comment>();
-    }
-
-    // Methods
-    public void PlayVideo()
-    {
-        Console.WriteLine($"Playing video: {title} by {author}");
-    }
-
-    public void PauseVideo()
-    {
-        Console.WriteLine($"Video paused: {title}");
     }
 
     public int GetNumberOfComments()
@@ -37,15 +24,22 @@ public class Video
     public void AddComment(string name, string text)
     {
         comments.Add(new Comment(name, text));
-        Console.WriteLine("Comment added!");
+    }
+
+    public void DisplayDetails()
+    {
+        Console.WriteLine($"Title: {title}");
+        Console.WriteLine($"Author: {author}");
+        Console.WriteLine($"Length: {length} seconds");
+        Console.WriteLine($"Number of Comments: {GetNumberOfComments()}");
     }
 
     public void DisplayComments()
     {
-        Console.WriteLine($"Comments for {title}:");
+        Console.WriteLine("Comments:");
         foreach (var comment in comments)
         {
-            Console.WriteLine($"{comment.GetCommentText()}");
+            Console.WriteLine(comment.GetCommentText());
         }
     }
 }

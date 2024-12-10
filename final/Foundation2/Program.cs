@@ -4,15 +4,36 @@ class Program
 {
     static void Main()
     {
-        Order myOrder = new Order(101);
-        Item item1 = new Item("Laptop", 1200.00);
-        Item item2 = new Item("Mouse", 25.99);
+        // Create customers and addresses
+        Address address1 = new Address("123 Main St", "Los Angeles", "CA", "USA");
+        Customer customer1 = new Customer("John Doe", address1);
 
-        myOrder.AddItem(item1);
-        myOrder.AddItem(item2);
-        myOrder.DisplayOrderDetails();
+        Address address2 = new Address("456 Maple Ave", "Toronto", "ON", "Canada");
+        Customer customer2 = new Customer("Jane Smith", address2);
 
-        myOrder.RemoveItem(item1);
-        myOrder.DisplayOrderDetails();
+        // Create products
+        Product product1 = new Product("Laptop", "P101", 1200.00, 1);
+        Product product2 = new Product("Mouse", "P102", 25.99, 2);
+        Product product3 = new Product("Keyboard", "P103", 45.50, 1);
+
+        // Create orders
+        Order order1 = new Order(customer1);
+        order1.AddProduct(product1);
+        order1.AddProduct(product2);
+
+        Order order2 = new Order(customer2);
+        order2.AddProduct(product3);
+        order2.AddProduct(product2);
+
+        // Display details for each order
+        Console.WriteLine("Order 1:");
+        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine(order1.GetShippingLabel());
+        Console.WriteLine($"Total Price: ${order1.CalculateTotalPrice():F2}\n");
+
+        Console.WriteLine("Order 2:");
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine(order2.GetShippingLabel());
+        Console.WriteLine($"Total Price: ${order2.CalculateTotalPrice():F2}\n");
     }
 }
