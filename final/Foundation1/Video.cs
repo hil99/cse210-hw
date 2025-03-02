@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 public class Video
 {
-    private string title;
+    
     private string author;
+    private string title;
     private int length; // Length in seconds
     private List<Comment> comments;
 

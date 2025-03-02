@@ -19,3 +19,6 @@ public class Word
         return IsHidden ? "_____" : Text;
     }
 }
+
+
+

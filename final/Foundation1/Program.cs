@@ -14,11 +14,11 @@ class Program
         video1.AddComment("Alice", "Very helpful, thank you.");
         video1.AddComment("Bob", "This made my day!");
 
-        Video video2 = new Video("Learn Java", "Jane Smith", 420);
+        Video video2 = new Video("Learning Java for a beginner", "Jane Smith", 420);
         video2.AddComment("Charlie", "Amazing content!");
         video2.AddComment("Sophia", "Thanks for sharing.");
 
-        Video video3 = new Video("Python Basics", "Alex Brown", 600);
+        Video video3 = new Video("Python Basics tuorial", "Alex Brown", 600);
         video3.AddComment("Eve", "So clear and concise!");
         video3.AddComment("Liam", "Can't wait for more videos.");
 
